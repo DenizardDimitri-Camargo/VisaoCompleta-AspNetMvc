@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,17 +8,29 @@ using System.Web.Mvc;
 namespace BookStore.Controllers
 {
     public class TesteController : Controller
-    {
-        public string Teste()
+    {        
+        // GET: Teste
+        public string Index(int id)
         {
-            return "Testado";
+            return "Index do " + id.ToString();
         }
 
-
-        // GET: Teste
-        public ActionResult Index()
+        public JsonResult UmaAction(int id, string nome)
         {
-            return View();
+            var autor = new Autor
+            {
+                //Id = id.Value,
+                Nome = nome
+            };
+
+            return Json(autor, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ActionName("Autor")]
+        public JsonResult ActionDois(Autor autor)
+        {
+            return Json(autor);
         }
     }
 }

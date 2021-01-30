@@ -8,7 +8,23 @@ using System.Web.Mvc;
 namespace BookStore.Controllers
 {
     public class TesteController : Controller
-    {        
+    {     
+        public ViewResult Dados(int id)
+        {
+            var autor = new Autor
+            {
+                Id = 1,
+                Nome = "dede"
+            };
+
+            ViewBag.Categoria = "Produtos de limpeza";
+            ViewData["Categoria"] = "Produtos de Informática";
+            TempData["Categoria"] = "Produtos de Escritório";
+            Session["Categoria"] = "Móveis";
+
+            return View(autor);
+        }
+
         // GET: Teste
         public string Index(int id)
         {

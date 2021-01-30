@@ -7,6 +7,8 @@ using System.Web.Mvc;
 
 namespace BookStore.Controllers
 {
+    [RoutePrefix("teste")] //coloca um prefixo de rota
+    [Route("{action=Dados}")] //seta a action principal
     public class TesteController : Controller
     {     
         public ViewResult Dados(int id)
@@ -47,6 +49,18 @@ namespace BookStore.Controllers
         public JsonResult ActionDois(Autor autor)
         {
             return Json(autor);
+        }
+
+        [Route("minharota/{id:int}")]
+        public string MinhaAction(int id)
+        {
+            return "Ok! Cheguei na rota";
+        }
+
+        [Route("~/rotaignorada/{id:int}")] //~ remove o prefixo de rota
+        public string MinhaAction2(int id)
+        {
+            return "Ok! Cheguei na rota";
         }
     }
 }

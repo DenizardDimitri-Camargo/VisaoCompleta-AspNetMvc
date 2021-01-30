@@ -13,6 +13,8 @@ namespace BookStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes(); //permite crear rotas personalizadas
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

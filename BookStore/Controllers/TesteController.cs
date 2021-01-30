@@ -62,5 +62,17 @@ namespace BookStore.Controllers
         {
             return "Ok! Cheguei na rota";
         }
+
+        [Route("rota/{categoria:alpha:minlength(3)}")] 
+        public string MinhaAction3(string categoria)
+        {
+            return "Ok! Cheguei na rota " + categoria;
+        }
+
+        [Route("rota/estacao/{estacao:(primavera|verao|outono|inverno)}")] // a él no le funcionó
+        public string MinhaAction4(string estacao)
+        {
+            return "Olá, estamos no " + estacao;
+        }
     }
 }

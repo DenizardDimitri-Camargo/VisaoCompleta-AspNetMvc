@@ -8,10 +8,11 @@ using System.Web.Mvc;
 namespace BookStore.Controllers
 {
     [RoutePrefix("autores")]
-    [LogActionFilter()]
+    [LogActionFilter()] //filtra em todas as actions
     public class AuthorController : Controller
     {
         [Route("listar")]
+        //[LogActionFilter()] //filtra nesta action
         public ActionResult Index()
         {
             return View();

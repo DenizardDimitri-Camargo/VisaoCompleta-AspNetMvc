@@ -15,10 +15,11 @@ namespace BookStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            var constraintsResolver = new DefaultInlineConstraintResolver();
-            constraintsResolver.ConstraintMap.Add("values", typeof(ValuesConstraint));
+            //var constraintsResolver = new DefaultInlineConstraintResolver();
+            //constraintsResolver.ConstraintMap.Add("values", typeof(ValuesConstraint));
 
-            routes.MapMvcAttributeRoutes(constraintsResolver); //permite crear rotas personalizadas
+            //routes.MapMvcAttributeRoutes(constraintsResolver); //permite crear rotas personalizadas
+            routes.MapMvcAttributeRoutes(); 
 
             routes.MapRoute(
                 name: "Default",

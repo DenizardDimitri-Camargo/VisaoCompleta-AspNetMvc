@@ -23,6 +23,8 @@ namespace BookStore.Controllers
         [Route("criar")]
         public ActionResult Create()
         {
+            //ModelState.AddModelError("Mensagem", "Algum erro ocorreu!"); //TESTE: manda erro para a view.
+
             var categorias = _db.Categorias.ToList();
             var viewModel = new EditorBookViewModel
             {
@@ -32,20 +34,37 @@ namespace BookStore.Controllers
                 Categoriaoptions = new SelectList(categorias, "Id", "Nome") //SelectList é um tipo chave/valor
             };
 
-            return View(viewModel);
+            return View(viewModel); //creio que só precisa instanciar um obj de EditorBookViewModel
         }
 
         [Route("criar")]
         [HttpPost]
         public ActionResult Create(EditorBookViewModel model)
         {
+            if (!ModelState.IsValid)
+            {//o conteúdo do if é da view Create(Get)
+                var categorias = _db.Categorias.ToList();
+                model.Categoriaoptions = new SelectList(categorias, "Id", "Nome");
+                return View(model);
+            }
             var livro = new Livro();
             livro.Titulo = model.Titulo;
             livro.ISBN = model.ISBN;
             livro.DataLancamento = model.DataLancamento;
             livro.CategoriaId = model.CategoriaId;
             _db.Livros.Add(livro);
-            _db.SaveChanges();
+            try
+            {
+                throw new Exception("Falha no banco"); //só para testar
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Mensagem", ex.Message);
+                var categorias = _db.Categorias.ToList();
+                model.Categoriaoptions = new SelectList(categorias, "Id", "Nome");
+                return View(model);
+            }
 
             return RedirectToAction(nameof(Index));
         }

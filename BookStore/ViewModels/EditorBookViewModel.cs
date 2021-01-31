@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,15 +19,16 @@ namespace BookStore.ViewModels
         [Required(ErrorMessage = "* ISBN Obrigatório")]
         public string ISBN { get; set; }
 
-        [Required(ErrorMessage = "* Data de Lançamento Obrigatória")]
+        [Required(ErrorMessage = "* Data inválida")]
         [Display(Name = "Data de Lançamento")]
         [DataType(DataType.Date)]
         public DateTime DataLancamento { get; set; }
         
-        [Required(ErrorMessage = "* Categoria Obrigatória")]
-        [Display(Name = "Nome do Livro")]
+        [Required(ErrorMessage = "* Selecione uma categoria")]
         public int CategoriaId { get; set; } //não foi exibido na view, creio que seja só para relacionamento
-
         public SelectList Categoriaoptions { get; set; }
+
+        [CheckAgeValidator]
+        public DateTime Age { get; set; }
     }
 }

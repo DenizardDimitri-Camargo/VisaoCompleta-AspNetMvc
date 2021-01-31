@@ -8,11 +8,13 @@ namespace IdentitySample.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize] //só quem estiver autenticado pode acessar index
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, User")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,6 +22,7 @@ namespace IdentitySample.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

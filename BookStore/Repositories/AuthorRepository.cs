@@ -11,7 +11,13 @@ namespace BookStore.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {
-        private BookStoreDataContext _db = new BookStoreDataContext();
+        private BookStoreDataContext _db; /* = new BookStoreDataContext(); Foi removido na aula 3 de DI */
+
+        public AuthorRepository(BookStoreDataContext context)
+        {
+            _db = context;
+        }
+        
         public bool Create(Autor autor) //poderia ser void
         {
             try

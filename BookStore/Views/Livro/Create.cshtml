@@ -4,9 +4,15 @@
     ViewBag.Title = "Crianndo um Novo Livro...";
 }
 
+@helper MinhaFuncao(string nome) //helpers podem ter código c#, html ou ambas)
+{
+    <text> O nome informado é @nome </text>
+}
+
 <h2>Novo Livro</h2>
 
-<form>
+@using (Html.BeginForm())
+{
     <div class="form-group">
         @Html.LabelFor(model => model.Titulo)  @*<label for="exampleInputEmail1">Email address</label>*@
         @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })  @*<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">*@
@@ -29,7 +35,11 @@
     </div>
 
     <button type="submit" class="btn btn-default">Submit</button>
-</form>
+}
+
+<p>
+    @MinhaFuncao("Dimitri Camargo")
+</p>
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")

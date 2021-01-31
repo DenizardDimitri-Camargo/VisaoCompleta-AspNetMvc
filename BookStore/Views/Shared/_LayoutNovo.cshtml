@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LayoutNovo</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css" media="all" />
+</head>
+<body>
+    @if (IsSectionDefined("menu"))
+    {
+        <div class="col-md-4">
+            <h3>Menu</h3>
+            @RenderSection("menu", false) <!-- true: obriga a todas as views que usam este layout a implementar esta section menu -->
+        </div>
+    }
+
+    <div class="container well col-md-8">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", false) <!-- Coloca o JS das views no fim da página-->
+</body>
+</html>
